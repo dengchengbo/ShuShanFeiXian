@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "EdGraphSchema_K2.h"
 #include "AttributeComponent.generated.h"
 
 
@@ -63,14 +62,6 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-public:
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Struct")
-	class UUserDefinedStruct*				Struct = nullptr;
-
-public:
-	UFUNCTION(BlueprintCallable, Category = "TempSSS")
-	void TempSSS();
 
 		
 };

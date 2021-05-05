@@ -43,7 +43,7 @@ void APickUpActorBase::BePickedUp()
 	Destroy();
 }
 
-void APickUpActorBase::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
+/*void APickUpActorBase::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {
 	Super::PostEditChangeProperty(PropertyChangedEvent);
 
@@ -62,7 +62,7 @@ void APickUpActorBase::PostEditChangeProperty(FPropertyChangedEvent& PropertyCha
 			}
 		}
 	}
-}
+}*/
 
 void APickUpActorBase::SetData(UObject* _Data)
 {

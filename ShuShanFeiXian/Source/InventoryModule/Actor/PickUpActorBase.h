@@ -24,7 +24,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+	//virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent);
 
 public:
 

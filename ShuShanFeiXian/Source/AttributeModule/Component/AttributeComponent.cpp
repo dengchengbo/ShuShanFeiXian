@@ -2,9 +2,6 @@
 
 
 #include "AttributeComponent.h"
-#include "Kismet2/StructureEditorUtils.h"
-#include "EdGraph/EdGraphPin.h"
-#include "EdGraphSchema_K2.h"
 
 // Sets default values for this component's properties
 UAttributeComponent::UAttributeComponent()
@@ -42,8 +39,3 @@ void UAttributeComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 }
 
 
-void  UAttributeComponent::TempSSS()
-{
-	
-	//FStructureEditorUtils::AddVariable(Struct, FEdGraphPinType(FName("int"),NAME_None,nullptr, EPinContainerType::None,false,FEdGraphTerminalType()));
-}
