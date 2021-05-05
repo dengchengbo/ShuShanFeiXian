@@ -2,6 +2,7 @@
 
 
 #include "GameplayAbilityComponent.h"
+#include "../Base/BaseAttributeSet.h"
 #include "../Base/GameplayAbilityBase.h"
 
 
@@ -16,6 +17,9 @@ UGameplayAbilityComponent::UGameplayAbilityComponent()
 
 	
 	//AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
+
+	AttributeSet = CreateDefaultSubobject<UBaseAttributeSet>(TEXT("AttributeSet"));
+
 	AbilitySystemComponent = this;
 }
 
