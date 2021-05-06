@@ -4,6 +4,13 @@
 #include "BaseAttributeSet.h"
 
 
+
+
+void UBaseAttributeSet::InitAttribute()
+{
+	InitAttribute_Event();
+}
+
 void UBaseAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
 {
 	

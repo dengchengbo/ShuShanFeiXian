@@ -30,7 +30,8 @@
 			"LoadingPhase": "PreDefault",
 			"AdditionalDependencies": [
 				"GameplayAbilities",
-				"Engine"
+				"Engine",
+				"AIModule"
 			]
 		},
 		{

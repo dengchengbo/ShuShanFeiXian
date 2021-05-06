@@ -138,8 +138,6 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "GameplayAbility")
 		TMap<FString, FAbilityInfo>					SkillBookMap;
 
-	UPROPERTY()
-		class UBaseAttributeSet*						AttributeSet;
 
 
 private:

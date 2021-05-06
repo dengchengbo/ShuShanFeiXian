@@ -14,5 +14,10 @@ void ASFPlayerController::BeginPlay()
 	Super::BeginPlay();
 
 	Init();
+	if (AttributeSet != nullptr) {
+		AttributeSet->InitAttribute();
+	}
+	
+	
 }
 

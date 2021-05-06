@@ -7,6 +7,16 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "BaseBPFunction.generated.h"
 
+
+/*GEngine->AddOnScreenDebugMessage
+(
+	-1,
+	10, 			//	显示的时间/秒
+	FColor::Blue, 	//	显示的颜色
+	"Hello! UE4"	//	显示的信息
+);*/
+
+
 /**
  * 
  */

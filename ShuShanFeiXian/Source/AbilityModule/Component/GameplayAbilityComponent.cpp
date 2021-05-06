@@ -18,7 +18,6 @@ UGameplayAbilityComponent::UGameplayAbilityComponent()
 	
 	//AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 
-	AttributeSet = CreateDefaultSubobject<UBaseAttributeSet>(TEXT("AttributeSet"));
 
 	AbilitySystemComponent = this;
 }
