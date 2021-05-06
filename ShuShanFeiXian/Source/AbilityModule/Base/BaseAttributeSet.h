@@ -23,11 +23,6 @@ UCLASS()
 class ABILITYMODULE_API UBaseAttributeSet : public UAttributeSet
 {
 	GENERATED_BODY()
-public:
-
-	UPROPERTY(BlueprintReadOnly)
-	FGameplayAttributeData							Health;
-	ATTRIBUTE_ACCESSORS(UBaseAttributeSet, Health);
 
 
 public:

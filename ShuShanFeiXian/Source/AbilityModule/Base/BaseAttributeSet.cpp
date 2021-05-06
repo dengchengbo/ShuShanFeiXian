@@ -6,7 +6,7 @@
 
 void UBaseAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
 {
-	SetHealth(1);
+	
 }
 
 void UBaseAttributeSet::PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data)

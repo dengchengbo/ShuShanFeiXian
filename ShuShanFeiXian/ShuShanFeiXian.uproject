@@ -12,7 +12,8 @@
 				"BaseModule",
 				"Engine",
 				"CoreUObject",
-				"GameplayAbilities"
+				"GameplayAbilities",
+				"AbilityModule"
 			]
 		},
 		{
