@@ -27,6 +27,6 @@ public:
 	
 public:
 
-	/*UPROPERTY(BlueprintReadWrite)
-		class UBaseAttributeSet* AttributeSet;*/
+	UPROPERTY(BlueprintReadWrite)
+	class UGeneralAttributeSet*					AttributeSet;
 };
