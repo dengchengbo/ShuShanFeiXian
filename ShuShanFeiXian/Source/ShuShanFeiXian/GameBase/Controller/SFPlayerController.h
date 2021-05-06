@@ -16,6 +16,8 @@ class SHUSHANFEIXIAN_API ASFPlayerController : public APlayerController
 
 public:
 
+	ASFPlayerController(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+
 	virtual void BeginPlay() override;
 
 public:
@@ -23,4 +25,8 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
 	void Init();
 	
+public:
+
+	/*UPROPERTY(BlueprintReadWrite)
+		class UBaseAttributeSet* AttributeSet;*/
 };

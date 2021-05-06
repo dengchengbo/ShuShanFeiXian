@@ -2,8 +2,12 @@
 
 
 #include "SFPlayerController.h"
+#include "AbilityModule/Base/BaseAttributeSet.h"
 
-
+ASFPlayerController::ASFPlayerController(const FObjectInitializer& ObjectInitializer)
+{
+	//AttributeSet = CreateDefaultSubobject<UBaseAttributeSet>(TEXT("AttributeSet"));
+}
 
 void ASFPlayerController::BeginPlay()
 {
