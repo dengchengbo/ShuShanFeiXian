@@ -57,8 +57,3 @@ protected:
 		Set##PropertyName(FMath::Clamp(Get##PropertyName(),Min,Max));\
 	};\
 }
-
-/*if (Data.EvaluatedData.Attribute == Get##PropertyName##Attribute())\
-		{\
-			\/*Set##PropertyName(FMath::Clamp(Get##PropertyName(),Min,Max));\
-}; \*/
