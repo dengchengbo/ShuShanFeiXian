@@ -3,20 +3,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/PlayerController.h"
+//#include "GameFramework/PlayerController.h"
+#include "AbilityModule/Game/AbilityPlayerController.h"
 #include "SFPlayerController.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class SHUSHANFEIXIAN_API ASFPlayerController : public APlayerController
+class SHUSHANFEIXIAN_API ASFPlayerController : public AAbilityPlayerController /*public APlayerController*/
 {
 	GENERATED_BODY()
 
 public:
 
-	ASFPlayerController(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+	ASFPlayerController(const FObjectInitializer& ObjectInitializer);
 
 	virtual void BeginPlay() override;
 

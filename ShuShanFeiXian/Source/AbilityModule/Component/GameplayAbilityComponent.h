@@ -36,7 +36,7 @@ struct ABILITYMODULE_API FAbilityInfo : public FTableRowBase
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable, BlueprintType)
 //class ABILITYMODULE_API UGameplayAbilityComponent : public UActorComponent, public IAbilitySystemInterface
-class ABILITYMODULE_API UGameplayAbilityComponent : public UAbilitySystemComponent, public IAbilitySystemInterface
+class ABILITYMODULE_API UGameplayAbilityComponent : public UAbilitySystemComponent/*, public IAbilitySystemInterface*/
 {
 	GENERATED_BODY()
 
@@ -52,7 +52,7 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	virtual class UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	//virtual class UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 private:
 
 	bool GiveAbility_A(const UObject* WorldContext, const FString& _AbilityID);
@@ -119,8 +119,8 @@ public:
 
 public:
 
-	UPROPERTY(BlueprintReadOnly, Category = "GameplayAbility")
-		class UAbilitySystemComponent*				AbilitySystemComponent;
+	/*UPROPERTY(BlueprintReadOnly, Category = "GameplayAbility")
+		class UAbilitySystemComponent*				AbilitySystemComponent;*/
 
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameplayAbility")

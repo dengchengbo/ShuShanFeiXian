@@ -19,7 +19,7 @@ UGameplayAbilityComponent::UGameplayAbilityComponent()
 	//AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 
 
-	AbilitySystemComponent = this;
+	//AbilitySystemComponent = this;
 }
 
 
@@ -43,10 +43,10 @@ void UGameplayAbilityComponent::TickComponent(float DeltaTime, ELevelTick TickTy
 
 
 
-UAbilitySystemComponent* UGameplayAbilityComponent::GetAbilitySystemComponent() const
+/*UAbilitySystemComponent* UGameplayAbilityComponent::GetAbilitySystemComponent() const
 {
 	return  AbilitySystemComponent;
-}
+}*/
 
 
 
@@ -54,7 +54,7 @@ bool UGameplayAbilityComponent::Init_Implementation(AActor* InOwnerActor, AActor
 {
 
 
-	if (AbilitySystemComponent != nullptr) {
+	//if (AbilitySystemComponent != nullptr) {
 
 		if (GetOwner()->HasAuthority()) {
 
@@ -69,15 +69,15 @@ bool UGameplayAbilityComponent::Init_Implementation(AActor* InOwnerActor, AActor
 			}
 
 
-			AbilitySystemComponent->InitAbilityActorInfo(InOwnerActor, InAvatarActor);
-
+			//AbilitySystemComponent->InitAbilityActorInfo(InOwnerActor, InAvatarActor);
+			InitAbilityActorInfo(InOwnerActor, InAvatarActor);
 			//Cast<ASXCharacter>(InAvatarActor)->GetAbilityController(InOwnerActor);
 			bIsInit = true;
 			return true;
 
 
 		}
-	}
+	//}
 
 	bIsInit = false;
 	return false;
@@ -127,7 +127,9 @@ bool UGameplayAbilityComponent::GiveAbility_B(TPair<FString, FAbilityInfo> _Abil
 
 
 	AbilityClass.GetDefaultObject()->InItData(&Ability);
-	FGameplayAbilitySpecHandle sHandle = AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(AbilityClass.GetDefaultObject(), 1, 0));
+	//FGameplayAbilitySpecHandle sHandle = AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(AbilityClass.GetDefaultObject(), 1, 0));
+
+	FGameplayAbilitySpecHandle sHandle = UAbilitySystemComponent::GiveAbility(FGameplayAbilitySpec(AbilityClass.GetDefaultObject(), 1, 0));
 	//UGameplayAbility* AbilityObj = AbilityClass.GetDefaultObject();
 
 	AbilitiesHandleMap.Add(AbilityID, sHandle);
@@ -144,7 +146,8 @@ bool UGameplayAbilityComponent::RemoveAbility_A(const FString& _AbilityID)
 
 	FGameplayAbilitySpecHandle sHandle = *AbilitiesHandleMap.Find(_AbilityID);
 
-	AbilitySystemComponent->ClearAbility(sHandle);
+	//AbilitySystemComponent->ClearAbility(sHandle);
+	ClearAbility(sHandle);
 
 	AbilitiesHandleMap.Remove(_AbilityID);
 	//GetAbilitiesMap()->Remove(_AbilityID);
@@ -167,7 +170,9 @@ bool UGameplayAbilityComponent::TryActivateAbilityByID_Implementation(const FStr
 
 	FGameplayAbilitySpecHandle sHandle = *AbilitiesHandleMap.Find(_AbilityID);
 	//FGameplayAbilitySpec* Spec = AbilitySystemComponent->FindAbilitySpecFromHandle(AbilityToActivate);
-	return AbilitySystemComponent->TryActivateAbility(sHandle);
+	//return AbilitySystemComponent->TryActivateAbility(sHandle);
+
+	return TryActivateAbility(sHandle);
 
 }
 
@@ -206,7 +211,9 @@ UGameplayAbilityBase* UGameplayAbilityComponent::GetAbilityObject(const FString&
 	}
 
 	FGameplayAbilitySpecHandle sHandle = *AbilitiesHandleMap.Find(_AbilityID);
-	FGameplayAbilitySpec* Spec = AbilitySystemComponent->FindAbilitySpecFromHandle(sHandle);
+	//FGameplayAbilitySpec* Spec = AbilitySystemComponent->FindAbilitySpecFromHandle(sHandle);
+
+	FGameplayAbilitySpec* Spec = FindAbilitySpecFromHandle(sHandle);
 
 	if (!Spec) {
 		return nullptr;
@@ -224,12 +231,20 @@ UGameplayAbilityBase* UGameplayAbilityComponent::GetAbilityObject(const FString&
 
 bool UGameplayAbilityComponent::SendGameplayEvent(FGameplayTag EventTag, FGameplayEventData Payload)
 {
-	if (AbilitySystemComponent != nullptr && !AbilitySystemComponent->IsPendingKill())
+	/*if (AbilitySystemComponent != nullptr && !AbilitySystemComponent->IsPendingKill())
 	{
 		FScopedPredictionWindow NewScopedWindow(AbilitySystemComponent, true);
 		AbilitySystemComponent->HandleGameplayEvent(EventTag, &Payload);
 		return true;
+	}*/
+
+	if (!IsPendingKill())
+	{
+		FScopedPredictionWindow NewScopedWindow(this, true);
+		HandleGameplayEvent(EventTag, &Payload);
+		return true;
 	}
+
 	else
 	{
 		//UE_LOG(Error, TEXT("UAbilitySystemBlueprintLibrary::SendGameplayEventToActor: Invalid ability system component retrieved from Actor %s. EventTag was %s"), *Actor->GetName(), *EventTag.ToString());

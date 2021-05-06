@@ -4,7 +4,7 @@
 #include "SFPlayerController.h"
 #include "../Attribute/GeneralAttributeSet.h"
 
-ASFPlayerController::ASFPlayerController(const FObjectInitializer& ObjectInitializer)
+ASFPlayerController::ASFPlayerController(const FObjectInitializer& ObjectInitializer) :Super(ObjectInitializer)
 {
 	AttributeSet = CreateDefaultSubobject<UGeneralAttributeSet>(TEXT("AttributeSet"));
 }

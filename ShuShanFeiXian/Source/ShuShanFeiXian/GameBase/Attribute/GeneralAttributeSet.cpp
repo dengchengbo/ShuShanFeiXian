@@ -54,7 +54,7 @@ void UGeneralAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCal
 	);*/
 
 	if (Data.EvaluatedData.Attribute == GetHealthAttribute()) {
-		//SetHealth(1.0f);
+		SetHealth(1.0f);
 	};
 
 	//ClampHealth(Data, 0, MaxHealth.GetCurrentValue());
