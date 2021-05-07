@@ -20,6 +20,9 @@ GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
 
+class FAttributeChangeDelegateEvent;
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FAttributeChangeDelegateEvent, FString, AttributeName, float, AttributeValue);
+
 UCLASS()
 class ABILITYMODULE_API UBaseAttributeSet : public UAttributeSet
 {
@@ -32,6 +35,8 @@ public:
 
 	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
 
+	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data, const FGameplayAttribute& Attribute);
+
 public:
 
 	UFUNCTION(BlueprintCallable, Category = "AttributeSet")
@@ -39,21 +44,33 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "AttributeSet", meta = (DisplayName = "InitAttribute", ScriptName = "InitAttribute"))
 	void InitAttribute_Event();
 
-	UFUNCTION(BlueprintCallable, Category = "AttributeSet")
-	UAbilitySystemComponent* Tempta() { return GetOwningAbilitySystemComponent(); };
+
+public:
+
+	UPROPERTY(BlueprintAssignable, Category = "DelegateEvent")
+		FAttributeChangeDelegateEvent			AttributeChangeDelegate;
 
 protected:
+
+	void OnAttributeChange(FString AttributeName, float AttributeValue, bool IsSend = true);
 
 
 
 };
 
-
-#define CLAMPATTRIBUTE(PropertyName) \
-	FORCEINLINE void Clamp##PropertyName(const FGameplayEffectModCallbackData& Data,float Min,float Max) \
+#define CLAMPATTRIBUTE(PropertyName,Min,Max) \
 { \
 	if (Data.EvaluatedData.Attribute == Get##PropertyName##Attribute())\
 	{\
-		Set##PropertyName(FMath::Clamp(Get##PropertyName(),Min,Max));\
+		Set##PropertyName(FMath::Clamp(Get##PropertyName(),(Min),(Max)));\
+	};\
+}
+
+
+#define LISTENING_ATTRIBUTECHANGE(PropertyName)\
+{\
+	if (Attribute == Get##PropertyName##Attribute())\
+	{\
+		OnAttributeChange(""#PropertyName, Get##PropertyName());\
 	};\
 }

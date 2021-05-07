@@ -19,7 +19,6 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	FGameplayAttributeData							Health;
 	ATTRIBUTE_ACCESSORS(UGeneralAttributeSet, Health);
-	CLAMPATTRIBUTE(Health);
 	
 
 	UPROPERTY(BlueprintReadOnly)
@@ -30,7 +29,7 @@ public:
 
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 
-	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
+	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data, const FGameplayAttribute& Attribute) override;
 
 	virtual void InitAttribute() override;
 

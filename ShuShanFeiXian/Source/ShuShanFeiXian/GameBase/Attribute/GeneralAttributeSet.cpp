@@ -14,14 +14,15 @@ void UGeneralAttributeSet::InitAttribute()
 
 void UGeneralAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
 {
-
+	Super::PreAttributeChange(Attribute, NewValue);
 
 }
 
-void UGeneralAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
+void UGeneralAttributeSet::PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data, const FGameplayAttribute& Attribute)
 {
-	const FGameplayAttribute& Attribute = Data.EvaluatedData.Attribute;
+	Super::PostGameplayEffectExecute(Data, Attribute);
 
+	CLAMPATTRIBUTE(Health, 0.0f, MaxHealth.GetCurrentValue());
 
-	ClampHealth(Data, 0, MaxHealth.GetCurrentValue());
+	LISTENING_ATTRIBUTECHANGE(Health);
 }
